@@ -1,0 +1,96 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+  background: #f4f6f8;
+  padding: 15px;
+}
+
+/* Main Container */
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+/* Timer */
+#timer {
+  text-align: center;
+  font-weight: bold;
+  color: #d32f2f;
+  margin-bottom: 20px;
+}
+
+/* Question */
+.question {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+
+/* Options */
+.question label {
+  display: block;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* Radio button spacing */
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+/* Submit Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0d47a1;
+}
+
+/* Result */
+#result {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-top: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+}
+.time{
+  font-weight: bold;
+}
+.time1{
+  text-align: end;
+}

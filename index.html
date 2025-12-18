@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Test - Metals and Non-metals</title>
+  <link rel="stylesheet" href="mocktest.css">
+  <style>
+      .watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  opacity: 0.15;
+  font-size: 40px;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+  .time1 {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    margin-bottom: 12px;
+}
+.time1.warning {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.timerDisplay {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+  .btnnext {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.btnnext:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+/* Click effect */
+.btnnext:active {
+    transform: scale(0.97);
+}
+
+/* Disabled button */
+.btnnext:disabled {
+    background: #999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+   body {
+    height: 100vh;
+}
+    /* Styling for the timer and quiz feedback */
+    #timerDisplay {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .time-warning {
+      color: red; /* Turns red when time is low */
+    }
+    /* CRITICAL: Hide all question pages by default */
+    .question-page {
+      display: none; 
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+    }
+    
+    /* CSS for button positioning (Next on right, Previous on left) */
+    .navigation-buttons {
+      margin-top: 20px;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+    }
+    
+    #right-nav {
+        display: flex;
+    }
+
+    .navigation-buttons button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    /* Style for the current question number display */
+    #pageCounter {
+      font-size: 1em;
+      font-weight: normal;
+      float: right;
+    }
+    .site-header {
+    background: linear-gradient(135deg, #1f2933, #374151);
+    color: white;
+    padding: 16px 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.site-header p {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #d1d5db;
+}
+.submitbtn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 12px 25px; /* Top-bottom and left-right padding */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Text size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+}
+
+.submitbtn:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+.prevbtn {
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+.prevbtn:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+}
+
+.prevbtn:active {
+    transform: scale(0.96);
+}
+ 
+
+  </style>
+</head>
+<body>
+<header class="site-header">
+    <h1>Metals and Non-Metals</h1>
+    <p>Mock Test • Class 9</p>
+</header>
+
+<div class="time1" id="timerDisplay">
+    ⏱ Time Left: <span class="timerDisplay">07:00</span>
+</div>
+<form id="quiz">
+
+  <div class="question-page" id="page-0">
+    <p>1. Which metal is stored in kerosene because it reacts vigorously with air and water? <span id="pageCounter"></span></p>
+    <input type="radio" name="q1" onclick="saveAnswer(0,0)"> A. Magnesium<br>
+    <input type="radio" name="q1" onclick="saveAnswer(0,1)"> B. Aluminium<br>
+    <input type="radio" name="q1" onclick="saveAnswer(0,2)"> C. Sodium<br>
+    <input type="radio" name="q1" onclick="saveAnswer(0,3)"> D. Zinc<br>
+    
+    <p>2. Which of the following metals can be cut with a knife?</p>
+    <input type="radio" name="q2" onclick="saveAnswer(1,0)"> A. Iron<br>
+    <input type="radio" name="q2" onclick="saveAnswer(1,1)"> B. Copper<br>
+    <input type="radio" name="q2" onclick="saveAnswer(1,2)"> C. Sodium<br>
+    <input type="radio" name="q2" onclick="saveAnswer(1,3)"> D. Aluminium<br>
+
+    <p>3. The most abundant metal in the Earth’s crust is:</p>
+    <input type="radio" name="q3" onclick="saveAnswer(2,0)"> A. Iron<br>
+    <input type="radio" name="q3" onclick="saveAnswer(2,1)"> B. Calcium<br>
+    <input type="radio" name="q3" onclick="saveAnswer(2,2)"> C. Aluminium<br>
+    <input type="radio" name="q3" onclick="saveAnswer(2,3)"> D. Copper<br>
+      
+    <p>4. Which non-metal is a good conductor of electricity?</p>
+    <input type="radio" name="q4" onclick="saveAnswer(3,0)"> A. Sulphur<br>
+    <input type="radio" name="q4" onclick="saveAnswer(3,1)"> B. Phosphorus<br>
+    <input type="radio" name="q4" onclick="saveAnswer(3,2)"> C. Graphite<br>
+    <input type="radio" name="q4" onclick="saveAnswer(3,3)"> D. Iodine<br>
+  </div>
+<div class="question-page" id="page-1">
+
+    <p>5. Which metal is extracted from its ore by electrolytic reduction?</p>
+    <input type="radio" name="q5" onclick="saveAnswer(4,0)"> A. Iron<br>
+    <input type="radio" name="q5" onclick="saveAnswer(4,1)"> B. Copper<br>
+    <input type="radio" name="q5" onclick="saveAnswer(4,2)"> C. Aluminium<br>
+    <input type="radio" name="q5" onclick="saveAnswer(4,3)"> D. Zinc<br>
+
+    <p>6. Which property makes metals suitable for making electrical wires?</p>
+    <input type="radio" name="q6" onclick="saveAnswer(5,0)"> A. Ductility<br>
+    <input type="radio" name="q6" onclick="saveAnswer(5,1)"> B. Malleability<br>
+    <input type="radio" name="q6" onclick="saveAnswer(5,2)"> C. Hardness<br>
+    <input type="radio" name="q6" onclick="saveAnswer(5,3)"> D. Sonority<br>
+
+    <p>7. The ore of aluminium is:</p>
+    <input type="radio" name="q7" onclick="saveAnswer(6,0)"> A. Hematite<br>
+    <input type="radio" name="q7" onclick="saveAnswer(6,1)"> B. Bauxite<br>
+    <input type="radio" name="q7" onclick="saveAnswer(6,2)"> C. Calamine<br>
+    <input type="radio" name="q7" onclick="saveAnswer(6,3)"> D. Galena<br>
+
+    <p>8. Which non-metal is liquid at room temperature?</p>
+    <input type="radio" name="q8" onclick="saveAnswer(7,0)"> A. Iodine<br>
+    <input type="radio" name="q8" onclick="saveAnswer(7,1)"> B. Chlorine<br>
+    <input type="radio" name="q8" onclick="saveAnswer(7,2)"> C. Bromine<br>
+    <input type="radio" name="q8" onclick="saveAnswer(7,3)"> D. Sulphur<br>
+  </div>
+  <div class="question-page" id="page-2">
+
+    <p>9. Which metal does NOT react with water at all?</p>
+    <input type="radio" name="q9" onclick="saveAnswer(8,0)"> A. Sodium<br>
+    <input type="radio" name="q9" onclick="saveAnswer(8,1)"> B. Calcium<br>
+    <input type="radio" name="q9" onclick="saveAnswer(8,2)"> C. Magnesium<br>
+    <input type="radio" name="q9" onclick="saveAnswer(8,3)"> D. Copper<br>
+
+    <p>10. Rusting of iron requires:</p>
+    <input type="radio" name="q10" onclick="saveAnswer(9,0)"> A. Water only<br>
+    <input type="radio" name="q10" onclick="saveAnswer(9,1)"> B. Oxygen only<br>
+    <input type="radio" name="q10" onclick="saveAnswer(9,2)"> C. Both oxygen and water<br>
+    <input type="radio" name="q10" onclick="saveAnswer(9,3)"> D. Carbon dioxide only<br>
+
+    <p>11. Which metal is used for galvanisation of iron?</p>
+    <input type="radio" name="q11" onclick="saveAnswer(10,0)"> A. Copper<br>
+    <input type="radio" name="q11" onclick="saveAnswer(10,1)"> B. Aluminium<br>
+    <input type="radio" name="q11" onclick="saveAnswer(10,2)"> C. Zinc<br>
+    <input type="radio" name="q11" onclick="saveAnswer(10,3)"> D. Lead<br>
+
+    <p>12. The chemical nature of metal oxides is generally:</p>
+    <input type="radio" name="q12" onclick="saveAnswer(11,0)"> A. Neutral<br>
+    <input type="radio" name="q12" onclick="saveAnswer(11,1)"> B. Acidic<br>
+    <input type="radio" name="q12" onclick="saveAnswer(11,2)"> C. Basic<br>
+    <input type="radio" name="q12" onclick="saveAnswer(11,3)"> D. Amphoteric<br>
+  </div>
+
+  <div class="question-page" id="page-3">
+    <p>13. Which metal is the best conductor of electricity?</p>
+    <input type="radio" name="q13" onclick="saveAnswer(12,0)"> A. Copper<br>
+    <input type="radio" name="q13" onclick="saveAnswer(12,1)"> B. Aluminium<br>
+    <input type="radio" name="q13" onclick="saveAnswer(12,2)"> C. Silver<br>
+    <input type="radio" name="q13" onclick="saveAnswer(12,3)"> D. Iron<br>
+
+    <p>14. Which non-metal is essential for combustion?</p>
+    <input type="radio" name="q14" onclick="saveAnswer(13,0)"> A. Nitrogen<br>
+    <input type="radio" name="q14" onclick="saveAnswer(13,1)"> B. Hydrogen<br>
+    <input type="radio" name="q14" onclick="saveAnswer(13,2)"> C. Carbon dioxide<br>
+    <input type="radio" name="q14" onclick="saveAnswer(13,3)"> D. Oxygen<br>
+
+    <p>15. Which of the following is an amphoteric oxide?</p>
+    <input type="radio" name="q15" onclick="saveAnswer(14,0)"> A. Na₂O<br>
+    <input type="radio" name="q15" onclick="saveAnswer(14,1)"> B. MgO<br>
+    <input type="radio" name="q15" onclick="saveAnswer(14,2)"> C. Al₂O₃<br>
+    <input type="radio" name="q15" onclick="saveAnswer(14,3)"> D. CO₂<br>
+  </div>
+  
+  <div class="navigation-buttons">
+    <div id="left-nav">
+    <button type="button" class="prevbtn" id="prevBtn" onclick="prevPage()">Previous</button>
+    </div>
+    <div id="right-nav">
+        <button type="button" id="nextBtn" class="btnnext" onclick="nextPage()">Next</button>
+        <button class="submitbtn"type="button" id="submitBtn" onclick="manualSubmit()" style="display:none;">Submit</button>
+    </div>
+  </div>
+  <div class="watermark">© Arshad• View Only</div>
+</form>
+
+<div id="resultContainer">
+  <h3 id="resultHeader"></h3>
+  <div id="wrongQuestions"></div>
+</div>
+
+<script>
+// --- CONFIGURATION: 15 Questions and Answers ---
+const questions = [
+  // Q1
+  { q: "Which metal is stored in kerosene because it reacts vigorously with air and water?", options: ["Magnesium", "Aluminium", "Sodium", "Zinc"], answer: 2 }, 
+  // Q2
+  { q: "Which of the following metals can be cut with a knife?", options: ["Iron", "Copper", "Sodium", "Aluminium"], answer: 2 },
+  // Q3
+  { q: "The most abundant metal in the Earth’s crust is:", options: ["Iron", "Calcium", "Aluminium", "Copper"], answer: 2 },
+  // Q4
+  { q: "Which non-metal is a good conductor of electricity?", options: ["Sulphur", "Phosphorus", "Graphite", "Iodine"], answer: 2 },
+  // Q5
+  { q: "Which metal is extracted from its ore by electrolytic reduction?", options: ["Iron", "Copper", "Aluminium", "Zinc"], answer: 2 },
+  // Q6
+  { q: "Which property makes metals suitable for making electrical wires?", options: ["Ductility", "Malleability", "Hardness", "Sonority"], answer: 0 },
+  // Q7
+  { q: "The ore of aluminium is:", options: ["Hematite", "Bauxite", "Calamine", "Galena"], answer: 1 },
+  // Q8
+  { q: "Which non-metal is liquid at room temperature?", options: ["Iodine", "Chlorine", "Bromine", "Sulphur"], answer: 2 },
+  // Q9
+  { q: "Which metal does NOT react with water at all?", options: ["Sodium", "Calcium", "Magnesium", "Copper"], answer: 3 },
+  // Q10
+  { q: "Rusting of iron requires:", options: ["Water only", "Oxygen only", "Both oxygen and water", "Carbon dioxide only"], answer: 2 },
+  // Q11
+  { q: "Which metal is used for galvanisation of iron?", options: ["Copper", "Aluminium", "Zinc", "Lead"], answer: 2 },
+  // Q12
+  { q: "The chemical nature of metal oxides is generally:", options: ["Neutral", "Acidic", "Basic", "Amphoteric"], answer: 2 },
+  // Q13
+  { q: "Which metal is the best conductor of electricity?", options: ["Copper", "Aluminium", "Silver", "Iron"], answer: 2 },
+  // Q14
+  { q: "Which non-metal is essential for combustion?", options: ["Nitrogen", "Hydrogen", "Carbon dioxide", "Oxygen"], answer: 3 },
+  // Q15
+  { q: "Which of the following is an amphoteric oxide?", options: ["Na₂O", "MgO", "Al₂O₃", "CO₂"], answer: 2 }
+];
+
+let userAnswers = new Array(questions.length).fill(null);
+let timeRemaining = 7*60; // 7 minutes in seconds
+let timerInterval = null;
+let currentPageIndex = 0; 
+
+const questionPages = document.querySelectorAll('.question-page');
+const totalQuizPages = questionPages.length; 
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
+
+// --- NAVIGATION LOGIC (Automatically works with 4 pages) ---
+
+function showPage(index) {
+  // Hide all pages
+  questionPages.forEach(page => {
+    page.style.display = 'none';
+  });
+
+  // Show the current page
+  if (questionPages[index]) {
+      questionPages[index].style.display = 'block';
+
+      // Update page counter (e.g., Page 3/4)
+      const counterElement = questionPages[index].querySelector('#pageCounter');
+      if (counterElement) {
+        counterElement.textContent = ` (Page ${index + 1}/${totalQuizPages})`;
+      }
+  }
+
+  // Manage buttons
+  prevBtn.style.visibility = (index === 0) ? 'hidden' : 'visible'; 
+  
+  // Last page?
+  if (index === totalQuizPages - 1) {
+    nextBtn.style.display = 'none';
+    submitBtn.style.display = 'inline-block';
+  } else {
+    nextBtn.style.display = 'inline-block';
+    submitBtn.style.display = 'none';
+  }
+}
+
+function nextPage() {
+  if (currentPageIndex < totalQuizPages - 1) {
+    currentPageIndex++;
+    showPage(currentPageIndex);
+  }
+}
+
+function prevPage() {
+  if (currentPageIndex > 0) {
+    currentPageIndex--;
+    showPage(currentPageIndex);
+  }
+}
+
+// --- QUIZ AND TIMER LOGIC (Unchanged) ---
+
+function saveAnswer(qIndex, optionIndex) {
+  if (qIndex >= 0 && qIndex < questions.length) {
+    userAnswers[qIndex] = Number(optionIndex);
+  }
+}
+
+function startTimer() {
+    const display = document.getElementById("timerDisplay");
+    
+    if (!display) return; 
+
+    timerInterval = setInterval(() => {
+        let minutes = Math.floor(timeRemaining / 60);
+        let seconds = timeRemaining % 60;
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        display.innerHTML = `Time: ${minutes}:${seconds}`;
+
+        if (timeRemaining < 60) {
+            display.classList.add("time-warning");
+        } else {
+            display.classList.remove("time-warning");
+        }
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            display.innerHTML = "Time's Up!";
+            check(); 
+            disableInputs();
+            document.querySelector('.navigation-buttons').style.display = 'none';
+        }
+
+        timeRemaining--;
+    }, 1000);
+}
+
+function manualSubmit() {
+    if(timerInterval) clearInterval(timerInterval); 
+    document.querySelector('.navigation-buttons').style.display = 'none';
+    check();
+}
+
+function check() {
+  let score = 0;
+  let output = "";
+  let hasWrong = false;
+
+  questionPages.forEach(page => page.style.display = 'none');
+  
+  for (let i = 0; i < questions.length; i++) {
+    // Check if user answered
+    if (userAnswers[i] !== null && userAnswers[i] !== undefined) {
+      if (Number(userAnswers[i]) === Number(questions[i].answer)) {
+        score++;
+      } else {
+        hasWrong = true;
+        output += `
+          <div style="background:#ffe6e6; padding:10px; margin-bottom:10px; border-radius:5px;">
+            <b>Q${i + 1}. ${questions[i].q}</b><br>
+            <span style="color:red">You chose: ${questions[i].options[userAnswers[i]]}</span><br>
+            <span style="color:green; font-weight:bold">Correct Answer: ${questions[i].options[questions[i].answer]}</span>
+          </div>
+        `;
+      }
+    } else {
+        // If skipped
+        hasWrong = true;
+        output += `
+          <div style="background:#fff3cd; padding:10px; margin-bottom:10px; border-radius:5px;">
+            <b>Q${i + 1}. Skipped</b><br>
+            <span style="color:green; font-weight:bold">Correct Answer: ${questions[i].options[questions[i].answer]}</span>
+          </div>
+        `;
+    }
+  }
+
+  // Show Score
+  const scoreText = "Your Score: " + score + "/" + questions.length;
+  document.getElementById("resultHeader").innerHTML = scoreText;
+
+  // Show Feedback
+  if (!hasWrong) {
+    output = "<p style='color: green; font-weight:bold; font-size:1.2em'>🎉 Perfect Score!</p>";
+  }
+  
+  document.getElementById("wrongQuestions").innerHTML = output;
+  disableInputs();
+}
+
+function disableInputs() {
+    const inputs = document.querySelectorAll('input[type="radio"]');
+    inputs.forEach(input => input.disabled = true);
+}
+
+// --- INITIALIZE ---
+showPage(currentPageIndex);
+startTimer();
+
+</script>
+
+</body>
+</html>
